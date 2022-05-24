@@ -1,0 +1,47 @@
+﻿@using Pre_Accounting_CAPRICORN.Models;
+@model List<Personnel>
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+@using (Html.BeginForm("Index", "Personnel", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+}
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Authority</th>
+        <th>Status</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Details</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.PersonnelID</td>
+            <td>@p.PersonnelName</td>
+            <td>@(p.Title == "0" ? "Admin" : p.Title == "1" ? "Sales Representative" : "not defined")</td>
+            <td>@p.Username</td>
+            <td>@p.Password</td>
+            <td>@p.Authority</td>
+            <td>@p.Status</td>
+            <td><a href="/Personnel/DeletePersonnel/@p.PersonnelID" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Personnel/BringPersonnel/@p.PersonnelID" class="btn btn-success">Update</a></td>
+            <td><a href="/Personnel/PersonnelDetails/@p.PersonnelID" class="btn btn-warning">Details</a></td>
+        </tr>
+    }
+
+</table>
+
+<a href="/Personnel/NewPersonnel/" class="btn btn-secondary">New Personnel</a>
+
+
+
+

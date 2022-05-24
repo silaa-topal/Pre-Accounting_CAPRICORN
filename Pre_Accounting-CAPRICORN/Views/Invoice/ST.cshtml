@@ -1,0 +1,33 @@
+﻿@using Pre_Accounting_CAPRICORN.Models;
+@model List<ST>
+@{
+    ViewBag.Title = "ST";
+}
+
+<h2>ST</h2>
+<br />
+@using (Html.BeginForm("ST", "Invoice", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+}
+<br />
+<table class="table table-bordered">
+    <tr>
+        <td>ID</td>
+        <td>Product</td>
+        <td>Quantity</td>
+        <td>Transaction Type</td>
+        <td>Remaining Stock</td>
+    </tr>
+    @foreach (var p in Model)
+    {
+    <tr>
+        <td>@p.STid</td>
+        <td>@p.ProductName</td>
+        <td>@p.Quantity</td>
+        <td>@(p.Type == "1" ? "Inflow" : p.Type == "2" ? "Outflow" : "not defined")</td>
+        <td>@p.RemainingStock</td>
+    </tr>
+    }
+</table>

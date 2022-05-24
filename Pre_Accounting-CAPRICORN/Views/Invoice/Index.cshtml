@@ -1,0 +1,64 @@
+﻿@using Pre_Accounting_CAPRICORN.Models;
+@model List<Invoice>
+@{
+    ViewBag.Title = "Index";
+    //double t = 0;
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<br />
+
+@using (Html.BeginForm("Index", "Invoice", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="search" />
+}
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <th>ID</th>
+        <th>Serial-Row No</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Tax Office</th>
+        <th>Recipent</th>
+        <th>Consigner</th>
+        <th>Total</th>
+        <th>Transaction Type</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>Details</th>
+        <th>Print</th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.InvoiceID</td>
+            <td>@i.InvoiceSerialRowNo</td>
+            <td>@i.InvoiceDate</td>
+            <td>@i.InvoiceTime</td>
+            <td>@i.TaxOffice</td>
+            <td>@i.Customer.CustomerName</td>
+            <td>@i.Personnel.PersonnelName</td>
+            <td>@i.TotalAmount</td>
+            @*<td>
+                    @{
+                        i.InvoiceItems.ToList().ForEach(x => t += x.Total);
+                    }
+                    @t
+                </td>*@
+            <td>@(i.Type == "1" ? "Purchase" : i.Type == "2" ? "Sale" : "not defined")</td>
+
+            <td><a href="/Invoice/BringInvoice/@i.InvoiceID" class="btn btn-success">Update</a></td>
+            <td><a href="/Invoice/Delete/@i.InvoiceID" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Invoice/InvoiceDetails/@i.InvoiceID" class="btn btn-warning" style="color:white">Details</a></td>
+            <td><a href="/Invoice/PrintInvoice/@i.InvoiceID" class="btn btn-info" style="color:white">Print</a></td>
+
+        </tr>
+    }
+
+</table>
+<a href="/Invoice/NewInvoice/" class="btn btn-secondary">Add Invoice</a>
+
+
+
+
+

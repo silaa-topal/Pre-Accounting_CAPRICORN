@@ -1,0 +1,46 @@
+﻿@using Pre_Accounting_CAPRICORN.Models;
+@model List<Product>
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+
+@using (Html.BeginForm("Index", "Product", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+}
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Brand</th>
+        <th>Stock</th>
+        <th>Category</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.ProductID</td>
+            <td>@p.ProductName</td>
+            <td>@p.Brand</td>
+            <td>@p.Stock</td>
+            <td>@p.Category.CategoryName</td>
+
+
+            <td>
+                <a href="/Product/DeleteProduct/@p.ProductID" class="btn btn-danger">Delete</a>
+            </td>
+            <td>
+                <a href="/Product/BringProduct/@p.ProductID" class="btn btn-success">Update</a>
+            </td>
+
+        </tr>
+    }
+</table>
+<a href="/Product/NewProduct/" class="btn btn-secondary">New Product</a>
+
+
+

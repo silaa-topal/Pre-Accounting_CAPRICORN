@@ -1,0 +1,30 @@
+﻿@model Pre_Accounting_CAPRICORN.Models.Category
+@{
+    ViewBag.Title = "BringCategory";
+}
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<br />
+<h2>Update Category</h2>
+<br />
+@using (Html.BeginForm("EditCategory", "Category", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.CategoryName)
+        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryName, "", new { @class = "Error" })
+        @Html.HiddenFor(x => x.CategoryID)
+        @*id null dönmemesi için*@
+    </div>
+    <button class="btn btn-warning">Update</button>
+}
+    <style>
+        .Error {
+            color: red;
+            font-family: 'Times New Roman';
+        }
+    </style>
+

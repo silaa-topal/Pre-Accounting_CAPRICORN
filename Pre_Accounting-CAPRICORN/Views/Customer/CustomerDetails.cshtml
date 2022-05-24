@@ -1,0 +1,45 @@
+﻿@using Pre_Accounting_CAPRICORN.Models;
+@model List<InvoiceItem>
+@{
+    ViewBag.Title = "CustomerDetails";
+}
+
+<h2>Customer Details</h2>
+@{
+    if (@ViewBag.msg != "")
+    {
+        <p>@ViewBag.msg</p>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <tr>
+                <td>Row</td>
+                <td>Date</td>
+                <td>Time</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Total</td>
+                <td>Type</td>
+                <td>Personnel</td>
+            </tr>
+            @{ int rowNo = 0;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(rowNo += 1)</td>
+                    <td>@item.Invoice.InvoiceDate</td>
+                    <td>@item.Invoice.InvoiceTime</td>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Invoice.TotalAmount</td>
+                    <td>@(item.Invoice.Type == "1" ? "Credit" : item.Invoice.Type == "2" ? "Debt" : "not defined")</td>
+                    <td>@item.Invoice.Personnel.PersonnelName</td>
+                </tr>
+            }
+        </table>
+    }
+}
+
+
+

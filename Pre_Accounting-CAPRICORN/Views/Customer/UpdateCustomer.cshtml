@@ -1,0 +1,28 @@
+﻿@model Pre_Accounting_CAPRICORN.Models.Customer
+@{
+    ViewBag.Title = "UpdateCustomer";
+}
+
+<h2>Update Customer</h2>
+
+<br />
+@using (Html.BeginForm("UpdateCustomer", "Customer", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.CustomerID)
+        @Html.Label("Name")
+        @Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessage("Required")
+        @Html.ValidationMessageFor(x => x.CustomerName, " ", new { @style = " color:red " })
+        <br />
+        @Html.Label("City")
+        @Html.TextBoxFor(x => x.CustomerCity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerName, " ", new { @style = " color:red " })
+        <br />
+        @Html.Label("Email Address")
+        @Html.TextBoxFor(x => x.CustomerMailAddress, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerMailAddress, " ", new { @style = " color:red " })
+        <br />
+    </div>
+    <button class="btn btn-secondary">Save</button>
+}

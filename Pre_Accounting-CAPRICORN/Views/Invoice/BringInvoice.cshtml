@@ -1,0 +1,49 @@
+﻿@model Pre_Accounting_CAPRICORN.Models.Invoice
+@{
+    ViewBag.Title = "BringInvoice";
+}
+
+<br />
+<h2>Update Invoice</h2>
+<br />
+
+@using (Html.BeginForm("UpdateInvoice", "Invoice", FormMethod.Post))
+{
+<div class="form-group">
+
+
+    @Html.HiddenFor(x => x.InvoiceID)
+    @Html.Label("Serial-Row No")
+    @Html.TextBoxFor(x => x.InvoiceSerialRowNo, new { @class = "form-control" })
+    <br />
+    @Html.Label("Date")
+    @Html.TextBoxFor(x => x.InvoiceDate, new { @class = "form-control" })
+    <br />
+    @Html.Label("Time")
+    @Html.TextBoxFor(x => x.InvoiceTime, new { @class = "form-control" })
+    <br />
+    @Html.DisplayName("Receipent")
+    @Html.DropDownListFor(x => x.CustomerID, (List<SelectListItem>)ViewBag.cust, "Choose Customer", new { @class = "form-control" })
+    <br />
+    @Html.DisplayName("Consigner")
+    @Html.DropDownListFor(x => x.PersonnelID, (List<SelectListItem>)ViewBag.pers, "Choose Personnel", new { @class = "form-control" })
+    <br />
+    @Html.Label("Tax Office")
+    @Html.TextBoxFor(x => x.TaxOffice, new { @class = "form-control" })
+    <br />
+    @Html.Label("Total Amount")
+    @Html.TextBoxFor(x => x.TotalAmount, new { @class = "form-control" })
+    <br />
+    @Html.DropDownList("Type", new List<SelectListItem>
+  {
+      new SelectListItem{Text="Choose Type", Value="0"},
+      new SelectListItem{Text="Purchase", Value="1"},
+      new SelectListItem{Text="Sale", Value="2"},
+  }, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-secondary">Save</button>
+</div>
+}
+
+

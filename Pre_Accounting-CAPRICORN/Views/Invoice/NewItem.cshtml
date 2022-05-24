@@ -1,0 +1,40 @@
+﻿@model Pre_Accounting_CAPRICORN.Models.InvoiceItem
+@{
+    ViewBag.Title = "NewItem";
+}
+
+@if (ViewBag.msg != null)
+    {
+        <script type="text/javascript">
+                window.onload = function () {
+                    alert("@ViewBag.msg");
+                };
+        </script>
+    }
+<h2>New Invoice Item</h2>
+
+<form class="form-group" method="post">
+    @Html.DisplayName("Invoice ID")
+    @Html.TextBoxFor(x => x.InvoiceID, new { @class = "form-control" })
+    <br />
+    @*@Html.DisplayName("Product ID")
+        @Html.TextBoxFor(x => x.ProductID, new { @class = "form-control" })
+        <br />*@
+    @Html.Label("Product")
+    @Html.DropDownListFor(x => x.ProductID, (List<SelectListItem>)ViewBag.product, "Choose Product", new { @class = "form-control" })
+    <br />
+    @Html.DisplayName("Quantity")
+    @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control" })
+    <br />
+    @Html.DisplayName("Unit Price")
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    <br />
+    @*@Html.DisplayName("Total")
+        @Html.TextBoxFor(x => x.Total, new { @class = "form-control" })
+        <br />*@
+
+
+    <button class="btn btn-secondary">Add</button>
+</form>
+
+

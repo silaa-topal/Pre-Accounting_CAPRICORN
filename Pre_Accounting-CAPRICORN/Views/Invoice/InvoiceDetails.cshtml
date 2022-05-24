@@ -1,0 +1,74 @@
+﻿@using Pre_Accounting_CAPRICORN.Models;
+@model List<InvoiceItem>
+@{
+    ViewBag.Title = "InvoiceDetails";
+}
+
+<br />
+<h2>Invoice Details - ID:@ViewBag.invoice.InvoiceID</h2>
+<br />
+<table class="meta">
+
+    <tr>
+        <th><span>Serial-Row No: </span></th>
+        <td><span>@ViewBag.invoice.InvoiceSerialRowNo</span></td>
+    </tr>
+    <tr>
+        <th><span>Consigner: </span></th>
+        <td><span>@ViewBag.invoice.Personnel.PersonnelName</span></td>
+    </tr>
+
+    <tr>
+        <th><span>Recipient: </span></th>
+        <td><span>@ViewBag.invoice.Customer.CustomerName</span></td>
+    </tr>
+    <tr>
+        <th><span>TaxOffice: </span></th>
+        <td><span>@ViewBag.invoice.TaxOffice</span></td>
+    </tr>
+
+    <tr>
+        <th style="width:50%;"><span>Date: </span></th>
+        <td><span>@ViewBag.invoice.InvoiceDate</span></td>
+    </tr>
+    <tr>
+        <th><span>Time: </span></th>
+        <td><span>@ViewBag.invoice.InvoiceTime</span></td>
+    </tr>
+
+
+</table>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total Price</th>
+
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.InvoiceItemID</td>
+            <td>@p.Product.ProductName</td>
+            <td>@p.Quantity</td>
+            <td>@p.Price</td>
+            @{
+                var totalP = p.Quantity * p.Price;
+                p.Total = totalP;
+            }
+            <td>@p.Total</td>
+
+        </tr>
+    }
+
+</table>
+
+<a href="/Invoice/NewItem?Id=(@ViewBag.invoice.InvoiceID)" class="btn btn-secondary">New Item</a>
+
+
+
+
+

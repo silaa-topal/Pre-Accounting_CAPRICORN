@@ -1,0 +1,41 @@
+﻿@model Pre_Accounting_CAPRICORN.Models.Customer
+@{
+    ViewBag.Title = "NewCustomer";
+}
+
+<h2>New Customer</h2>
+<br />
+
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+<script type="text/javascript">
+        if ('@ViewBag.msg' != "")
+        alert('@ViewBag.msg');
+</script>
+<form asp-action="NewCustomer" asp-controller="Customer" class="form-group" method="post">
+    @Html.ValidationSummary(false, "", new { @class = "Error" })
+    @*<div asp-validation-summary="All"></div>*@
+    @Html.Label("Name")
+    @Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control" })
+    <br />
+    @*@Html.ValidationMessageFor(x => x.CustomerMailAddress, " ", new { @class = "Error" })*@
+    @Html.Label("Email Address")
+    @Html.TextBoxFor(x => x.CustomerMailAddress, new { @class = "form-control" })
+
+    <br />
+    @Html.Label("City")
+    @Html.TextBoxFor(x => x.CustomerCity, new { @class = "form-control" })
+    <br />
+
+
+    <button class="btn btn-secondary">Save</button>
+</form>
+
+<style>
+    .Error {
+        color: red;
+        font-family: 'Times New Roman';
+    }
+</style>

@@ -1,0 +1,32 @@
+﻿@model Pre_Accounting_CAPRICORN.Models.Personnel
+@{
+    ViewBag.Title = "BringPersonnel";
+}
+
+<h2>Update Personnel</h2>
+<br/>
+@using (Html.BeginForm("UpdatePersonnel", "Personnel", FormMethod.Post))
+{
+<div class="form-group">
+
+
+    @Html.HiddenFor(x => x.PersonnelID)
+    @Html.Label("Name")
+    @Html.TextBoxFor(x => x.PersonnelName, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Title)
+    @Html.DropDownListFor(x => x.Title, (List<SelectListItem>)ViewBag.titles, "Choose Title", new { @class = "form-control" })
+    <br />
+    @Html.Label("Username")
+    @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+    <br />
+    @Html.Label("Password")
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+    <br />
+    @Html.Label("Authority")
+    @Html.TextBoxFor(x => x.Authority, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-secondary">Save</button>
+</div>
+}
+
